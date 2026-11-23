@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>星屑ノート · 一抹二次元的日常</title>
+  <meta name="description" content="星屑ノート —— 一个简洁的二次元风格个人博客，记录日常、番剧与技术笔记。" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%B8%3C/text%3E%3C/svg%3E" />
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('anime-blog-theme');
+        var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.dataset.theme = saved || (dark ? 'dark' : 'light');
+      } catch (e) { /* 隐私模式下忽略 */ }
+    })();
+  </script>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <canvas id="petals" aria-hidden="true"></canvas>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#/" aria-label="星屑ノート 首页">
+        <span class="brand-mark" aria-hidden="true">✧</span>
+        <span class="brand-name">星屑ノート</span>
+      </a>
+      <nav class="nav" aria-label="主导航">
+        <a href="#/" data-nav="home">首页</a>
+        <a href="#/archive" data-nav="archive">归档</a>
+        <a href="#/about" data-nav="about">关于</a>
+        <button class="theme-btn" id="themeBtn" type="button" aria-label="切换深浅色">🌙</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero" id="hero">
+      <div class="hero-text">
+        <p class="hero-kicker">✧ 欢迎光临本鱼的秘密基地 ✧</p>
+        <h1>把今天折成星星，<br /><span class="grad">收进口袋里。</span></h1>
+        <p class="hero-desc">这里记录着日常的碎碎念、喜欢的番剧，还有一些笨拙的技术笔记。写得很慢，但每一篇都是真心话。</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" id="startBtn" type="button">开始阅读</button>
+          <a class="btn btn-ghost" href="#/about">关于作者</a>
+        </div>
+        <ul class="hero-stats">
+          <li><strong id="statPosts">0</strong><span>篇文章</span></li>
+          <li><strong id="statTags">0</strong><span>个标签</span></li>
+          <li><strong>1</strong><span>条肥鱼</span></li>
+        </ul>
+      </div>
+
+      <div class="hero-art">
+        <div class="avatar-card">
+          <div class="speech">今天也要好好吃饭呀！</div>
+          <img class="avatar" src="img/avatar.webp" alt="大肥鱼的头像" width="512" height="512" decoding="async" />
+          <p class="avatar-name">大肥鱼 <span>@fatfish</span></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="toolbar" id="toolbar" aria-label="文章筛选">
+      <div class="search">
+        <input id="searchInput" type="search" placeholder="搜索文章或标签…" aria-label="搜索文章" autocomplete="off" />
+      </div>
+      <div class="chips" id="tagChips"></div>
+    </section>
+
+    <section id="view" class="view" aria-live="polite"></section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© 2026 星屑ノート · 由一条贪吃的大肥鱼维护 🐟</p>
+      <p class="tiny">素敵な一日を、あなたに。</p>
+    </div>
+  </footer>
+
+  <noscript>
+    <p style="text-align:center;padding:24px">这个博客需要开启 JavaScript 才能看哦～</p>
+  </noscript>
+
+  <script src="js/posts.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
