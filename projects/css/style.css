@@ -770,6 +770,41 @@ img, svg { max-width: 100%; }
   .speech { font-size: 0.72rem; left: 0; }
 }
 
+/* ---------- 小工具入口（今天吃啥） ---------- */
+.tool-strip {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 4px 0 28px;
+  padding: 16px 20px;
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  background: linear-gradient(120deg, var(--accent-soft), rgba(139, 108, 255, 0.12));
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.tool-strip:hover { transform: translateY(-2px); border-color: var(--accent); }
+
+.tool-emoji { font-size: 28px; line-height: 1; flex: none; }
+
+.tool-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+
+.tool-text strong { font-size: 0.98rem; letter-spacing: 0.5px; }
+
+.tool-text span { font-size: 0.8rem; color: var(--muted); }
+
+.tool-go { flex: none; font-size: 0.86rem; padding: 0.5em 1.15em; }
+
+@media (max-width: 560px) {
+  .tool-strip { padding: 14px 16px; gap: 12px; border-radius: 16px; }
+  .tool-emoji { font-size: 22px; }
+  .tool-text strong { font-size: 0.9rem; }
+  .tool-text span { font-size: 0.74rem; }
+  .tool-go { display: none; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

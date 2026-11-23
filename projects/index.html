@@ -23,7 +23,7 @@
       } catch (e) { /* 隐私模式下忽略 */ }
     })();
   </script>
-  <link rel="stylesheet" href="css/style.css?v=20261124" />
+  <link rel="stylesheet" href="css/style.css?v=20261125" />
 </head>
 <body>
   <canvas id="petals" aria-hidden="true"></canvas>
@@ -38,6 +38,7 @@
         <a href="#/" data-nav="home">首页</a>
         <a href="#/archive" data-nav="archive">归档</a>
         <a href="#/about" data-nav="about">关于</a>
+        <a href="food-wheel/">🎲 吃啥</a>
         <button class="theme-btn" id="themeBtn" type="button" aria-label="切换深浅色">🌙</button>
       </nav>
     </div>
@@ -68,6 +69,15 @@
         </div>
       </div>
     </section>
+
+    <a class="tool-strip" href="food-wheel/" aria-label="今天吃啥抽签器">
+      <span class="tool-emoji" aria-hidden="true">🎲</span>
+      <span class="tool-text">
+        <strong>今天吃啥 · 抽签器</strong>
+        <span>选择困难症专用小转盘：点一下，今天就吃这个</span>
+      </span>
+      <span class="btn btn-primary tool-go">去转一转</span>
+    </a>
 
     <section class="toolbar" id="toolbar" aria-label="文章筛选">
       <div class="search">
