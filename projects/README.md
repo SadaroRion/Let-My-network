@@ -48,6 +48,9 @@ projects/
     ├── avatar.webp   # 首页头像（512×512，透明背景）
     ├── persona.webp  # 大肥鱼人设图（文章配图）
     └── daily.webp    # 大肥鱼日常图（文章配图）
+
+food-wheel/           # 「今天吃啥」抽签器小工具（独立静态页，index.html + css/ + js/）
+                      # 线上：https://sadarorion.github.io/Let-My-network/food-wheel/
 ```
 
 ## 加一篇文章

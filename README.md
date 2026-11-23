@@ -21,6 +21,7 @@
 │   │   ├── posts.js     # 文章数据
 │   │   └── app.js       # 路由 / 渲染 / 主题 / 樱花
 │   ├── img/             # avatar.webp / persona.webp / daily.webp
+│   ├── food-wheel/      # 「今天吃啥」抽签器小工具页（手机可开，首页有入口卡片）
 │   └── README.md
 └── 预览图/              # 只给本地看，不部署
     ├── preview.png
@@ -34,7 +35,7 @@
 
 ### 方式一：GitHub Pages（已上线 ✅）
 
-线上地址：**<https://sadarorion.github.io/Let-My-network/>**（2026-11-24 首次部署成功）
+线上地址：**<https://sadarorion.github.io/Let-My-network/>**（2026-11-24 首次部署成功）；小工具「今天吃啥抽签器」：**<https://sadarorion.github.io/Let-My-network/food-wheel/>**（从博客首页入口卡片或导航「🎲 吃啥」进入）
 
 仓库 `SadaroRion/Let-My-network` 已配 `.github/workflows/pages.yml`，只把 `projects/` 目录发布到 Pages；Push 到 `main` 会自动重新部署，无需手动操作。
 
