@@ -32,7 +32,18 @@
 
 站点是纯静态 + 哈希路由（`#/post/xxx` 只在浏览器里跳转），服务器只需要返回 `/` 处的 `index.html`，**不需要任何 rewrite / Node / 数据库配置**。
 
-### 方式一：Cloudflare Pages 直接上传（推荐，0 元）
+### 方式一：GitHub Pages（已配好 workflow，推荐）
+
+仓库 `SadaroRion/Let-My-network` 已有 `.github/workflows/pages.yml`，它只把 `projects/` 目录发布到 Pages。
+
+1. 打开 <https://github.com/SadaroRion/Let-My-network/settings/pages>
+2. **Build and deployment** → **Source** 选 **GitHub Actions**，保存
+3. 去 **Actions** 页 → 左侧 **Deploy blog to GitHub Pages** → **Run workflow**
+4. 约一分钟后访问 `https://sadarorion.github.io/Let-My-network/`
+
+之后每次 `git push` 到 `main` 都会自动重新部署。
+
+### 方式二：Cloudflare Pages 直接上传（0 元，免 Git）
 
 1. 打开 <https://dash.cloudflare.com/>，用邮箱注册并登录
 2. 左侧 **Workers & Pages** → **Create** → **Pages** → **Upload assets**
@@ -41,7 +52,7 @@
 5. 以后更新：进项目 → **Create new deployment** → 再拖一次
 6. 想绑自己的域名：项目 → **Custom domains** → 输入域名，按提示去域名商加 CNAME
 
-### 方式二：GitHub Pages（需要 Git 账号）
+### 方式三：GitHub Pages 传统分支发布
 
 1. 新建仓库 `fatfish-blog`（Public）
 2. 把 `projects` 里的文件推到仓库根目录（`index.html` 在最外层）
