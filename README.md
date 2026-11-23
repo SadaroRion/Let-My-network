@@ -32,9 +32,16 @@
 
 站点是纯静态 + 哈希路由（`#/post/xxx` 只在浏览器里跳转），服务器只需要返回 `/` 处的 `index.html`，**不需要任何 rewrite / Node / 数据库配置**。
 
-### 方式一：GitHub Pages（已配好 workflow，推荐）
+### 方式一：GitHub Pages（已上线 ✅）
 
-仓库 `SadaroRion/Let-My-network` 已有 `.github/workflows/pages.yml`，它只把 `projects/` 目录发布到 Pages。
+线上地址：**<https://sadarorion.github.io/Let-My-network/>**（2026-11-24 首次部署成功）
+
+仓库 `SadaroRion/Let-My-network` 已配 `.github/workflows/pages.yml`，只把 `projects/` 目录发布到 Pages；Push 到 `main` 会自动重新部署，无需手动操作。
+
+> ⚠️ 仓库必须保持 **Public**：GitHub 免费账号的 Pages 不支持私有仓库。
+> ⚠️ 不要再添加第二个 Pages workflow（例如 GitHub 模板 `static.yml`），否则两个流程会互相覆盖。
+
+需要重新配置或换机器时：
 
 1. 打开 <https://github.com/SadaroRion/Let-My-network/settings/pages>
 2. **Build and deployment** → **Source** 选 **GitHub Actions**，保存
