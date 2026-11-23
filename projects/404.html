@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>404 · 走丢的星星</title>
+  <meta name="robots" content="noindex" />
+  <style>
+    :root { color-scheme: light dark; }
+    body {
+      margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: radial-gradient(circle at 30% 20%, #fde7f3, #f6efff 60%, #ffffff);
+      color: #3a3450; text-align: center; padding: 24px;
+    }
+    .box { max-width: 440px; }
+    .big {
+      font-size: 76px; margin: 0 0 8px; font-weight: 800; letter-spacing: 2px;
+      background: linear-gradient(120deg, #ff8fc7, #a78bfa);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    p { line-height: 1.9; color: #6b6485; margin: 0 0 8px; }
+    a {
+      display: inline-block; margin-top: 20px; padding: 11px 26px; border-radius: 999px;
+      text-decoration: none; color: #fff; font-weight: 600;
+      background: linear-gradient(120deg, #ff8fc7, #a78bfa);
+      box-shadow: 0 10px 24px rgba(167, 139, 250, 0.35);
+    }
+    a:hover { opacity: 0.9; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <p class="big">404</p>
+    <p>这颗星星没有找到呢……<br />是不是地址写错了，或者它已经被本鱼偷偷吃掉啦？</p>
+    <a id="homeLink" href="./">回到首页</a>
+  </div>
+  <script>
+    // 兼容部署在子路径（如 GitHub Pages 的 /Let-My-network/）的情况
+    (function () {
+      var dir = location.pathname.replace(/[^/]*$/, '');
+      document.getElementById('homeLink').setAttribute('href', dir || '/');
+    })();
+  </script>
+</body>
+</html>

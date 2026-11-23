@@ -2,14 +2,14 @@
 
 一个简洁的二次元风格静态博客，纯原生 HTML / CSS / JavaScript，零依赖、零构建。
 
-![浅色主题预览](preview.png)
+![浅色主题预览](../预览图/preview.png)
 
 <details>
 <summary>深色主题 / 移动端预览</summary>
 
-![深色主题预览](preview-dark.png)
+![深色主题预览](../预览图/preview-dark.png)
 
-![移动端预览](preview-mobile.png)
+![移动端预览](../预览图/preview-mobile.png)
 
 </details>
 
