@@ -23,7 +23,7 @@
       } catch (e) { /* 隐私模式下忽略 */ }
     })();
   </script>
-  <link rel="stylesheet" href="css/style.css?v=20261124b" />
+  <link rel="stylesheet" href="css/style.css?v=20261125a" />
 </head>
 <body>
   <canvas id="petals" aria-hidden="true"></canvas>
@@ -40,6 +40,7 @@
         <a href="#/about" data-nav="about">关于</a>
         <a href="food-wheel/">🎲 吃啥</a>
         <button class="theme-btn" id="themeBtn" type="button" aria-label="切换深浅色">🌙</button>
+        <button class="menu-btn" id="menuBtn" type="button" aria-label="打开侧边栏" aria-expanded="false" aria-controls="drawer">☰</button>
       </nav>
     </div>
   </header>
@@ -96,11 +97,35 @@
     </div>
   </footer>
 
+  <!-- 移动端侧边栏（≤860px 时由 ☰ 打开） -->
+  <div class="drawer-mask" id="drawerMask"></div>
+  <aside class="drawer" id="drawer" aria-label="侧边栏" aria-hidden="true">
+    <div class="drawer-head">
+      <span class="brand-name">星屑ノート</span>
+      <button class="drawer-close" id="drawerClose" type="button" aria-label="关闭侧边栏">✕</button>
+    </div>
+    <nav class="drawer-nav" aria-label="移动端导航">
+      <a href="#/" data-nav="home">🏠 首页</a>
+      <a href="#/archive" data-nav="archive">🗂 归档</a>
+      <a href="#/about" data-nav="about">🐟 关于</a>
+      <a href="food-wheel/">🎲 今天吃啥</a>
+    </nav>
+    <div class="drawer-block">
+      <p class="drawer-label">筛选标签</p>
+      <div class="chips drawer-chips" id="drawerChips"></div>
+    </div>
+    <div class="drawer-block drawer-stats">
+      <span><strong id="dStatPosts">0</strong> 篇文章</span>
+      <span><strong id="dStatTags">0</strong> 个标签</span>
+    </div>
+    <p class="drawer-tip">点在标签上，只看那一类的文章；点「全部」回到所有文章。</p>
+  </aside>
+
   <noscript>
     <p style="text-align:center;padding:24px">这个博客需要开启 JavaScript 才能看哦～</p>
   </noscript>
 
-  <script src="js/posts.js?v=20261124b"></script>
-  <script src="js/app.js?v=20261124b"></script>
+  <script src="js/posts.js?v=20261125a"></script>
+  <script src="js/app.js?v=20261125a"></script>
 </body>
 </html>

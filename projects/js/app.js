@@ -5,7 +5,13 @@
   const $ = (sel, root = document) => root.querySelector(sel);
   const WEEK = ['日', '一', '二', '三', '四', '五', '六'];
 
-  const posts = POSTS.slice().sort((a, b) => (a.date < b.date ? 1 : -1));
+  /* 按发布时间排序：date + 可选 time，同一天也能分出先后 */
+  const stamp = (p) => p.date + ' ' + (p.time || '00:00');
+  const posts = POSTS.slice().sort((a, b) => {
+    const ka = stamp(a);
+    const kb = stamp(b);
+    return ka < kb ? 1 : ka > kb ? -1 : 0;
+  });
   const state = { tag: null, q: '' };
   let lastView = null;
 
@@ -16,6 +22,11 @@
     chips: $('#tagChips'),
     search: $('#searchInput'),
     themeBtn: $('#themeBtn'),
+    menuBtn: $('#menuBtn'),
+    drawer: $('#drawer'),
+    drawerMask: $('#drawerMask'),
+    drawerClose: $('#drawerClose'),
+    drawerChips: $('#drawerChips'),
   };
 
   const esc = (value) =>
@@ -74,7 +85,7 @@
 
   function renderChips() {
     const items = [{ tag: null, label: '全部' }].concat(allTags.map((t) => ({ tag: t, label: '#' + t })));
-    els.chips.innerHTML = items
+    const html = items
       .map((item) => {
         const active = (item.tag || null) === (state.tag || null);
         return (
@@ -84,6 +95,8 @@
         );
       })
       .join('');
+    els.chips.innerHTML = html;
+    if (els.drawerChips) els.drawerChips.innerHTML = html;
   }
 
   function renderHome() {
@@ -152,7 +165,7 @@
         '<a class="back" href="#/">← 返回首页</a>' +
         '<header class="post-head">' +
           '<div class="post-meta">' +
-            '<time datetime="' + post.date + '">' + fmtDate(post.date) + ' · ' + fmtWeek(post.date) + '</time>' +
+            '<time datetime="' + post.date + (post.time ? 'T' + post.time : '') + '">' + fmtDate(post.date) + ' · ' + fmtWeek(post.date) + (post.time ? ' · ' + esc(post.time) : '') + '</time>' +
             '<span>阅读约 ' + readingTime(post) + '</span>' +
           '</div>' +
           '<h1 class="post-title">' + esc(post.title) + '</h1>' +
@@ -225,6 +238,20 @@
     return { view: 'home' };
   }
 
+  /* ---------- 移动端侧边栏 ---------- */
+  let drawerOpen = false;
+
+  function setDrawer(open) {
+    if (!els.drawer || !els.menuBtn) return;
+    drawerOpen = open;
+    els.drawer.classList.toggle('is-open', open);
+    if (els.drawerMask) els.drawerMask.classList.toggle('is-open', open);
+    els.drawer.setAttribute('aria-hidden', String(!open));
+    els.menuBtn.setAttribute('aria-expanded', String(open));
+    els.menuBtn.setAttribute('aria-label', open ? '关闭侧边栏' : '打开侧边栏');
+    document.body.classList.toggle('is-drawer-open', open);
+  }
+
   function setNav(view) {
     const key = view === 'post' ? 'home' : view;
     document.querySelectorAll('[data-nav]').forEach((link) => {
@@ -249,6 +276,7 @@
   }
 
   function route() {
+    if (drawerOpen) setDrawer(false);
     const r = parseRoute();
     const isHome = r.view === 'home';
 
@@ -291,12 +319,32 @@
     if (parseRoute().view === 'home') renderHome();
   });
 
-  els.chips.addEventListener('click', (event) => {
+  function onChipClick(event) {
     const btn = event.target.closest('button[data-tag]');
     if (!btn) return;
     const tag = btn.dataset.tag;
+    if (drawerOpen) setDrawer(false);
     navigate(tag ? '#/tag/' + encodeURIComponent(tag) : '#/');
-  });
+  }
+
+  els.chips.addEventListener('click', onChipClick);
+  if (els.drawerChips) els.drawerChips.addEventListener('click', onChipClick);
+
+  /* ---------- 侧边栏开合 ---------- */
+  if (els.menuBtn && els.drawer) {
+    els.menuBtn.addEventListener('click', () => setDrawer(!drawerOpen));
+    if (els.drawerClose) els.drawerClose.addEventListener('click', () => setDrawer(false));
+    if (els.drawerMask) els.drawerMask.addEventListener('click', () => setDrawer(false));
+    els.drawer.addEventListener('click', (event) => {
+      if (event.target.closest('a')) setDrawer(false);
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && drawerOpen) setDrawer(false);
+    });
+    window.addEventListener('resize', () => {
+      if (drawerOpen && window.innerWidth > 860) setDrawer(false);
+    });
+  }
 
   const startBtn = $('#startBtn');
   if (startBtn) {
@@ -308,6 +356,10 @@
   /* ---------- 统计 ---------- */
   $('#statPosts').textContent = posts.length;
   $('#statTags').textContent = allTags.length;
+  const dStatPosts = $('#dStatPosts');
+  const dStatTags = $('#dStatTags');
+  if (dStatPosts) dStatPosts.textContent = posts.length;
+  if (dStatTags) dStatTags.textContent = allTags.length;
 
   /* ---------- 主题 ---------- */
   (function initTheme() {
